@@ -161,7 +161,6 @@ Formato: *Como [rol], quiero [acción], para [beneficio]*.
 
 ## Tablero (formato Kanban)
 
-Cópienlo tal cual a Trello / GitHub Projects, o preséntenlo así en el documento — cada tarjeta es una HU.
 
 ### ✅ Hecho
 - HU-01 · Registro de empresa y cuenta admin
