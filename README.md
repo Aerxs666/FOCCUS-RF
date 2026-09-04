@@ -193,7 +193,3 @@ Cópienlo tal cual a Trello / GitHub Projects, o preséntenlo así en el documen
 - Adoptar una sola librería de estilos (hoy conviven Tailwind y Bootstrap)
 
 ---
-
-## Cómo usar esto en la sustentación
-
-Si preguntan por trazabilidad: cada HU la pueden mostrar en vivo — abren la pantalla mencionada en "Evidencia", hacen la acción, y muestran el resultado reflejado en la base de datos o en la respuesta de la API en `/docs`. Con las 21 historias confirmadas funcionando de punta a punta, pueden elegir en el momento cuáles demostrar según el tiempo disponible — prioricen las que tocan varias categorías de la rúbrica a la vez (por ejemplo, invitar un usuario con rol demuestra a la vez roles/permisos, JWT operativo, y un CRUD completo).
