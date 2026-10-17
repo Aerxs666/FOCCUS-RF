@@ -2,7 +2,7 @@
 
 ## Nota de contexto
 
-Este documento se reconstruyó a partir del código ya implementado, después de que el repositorio original donde se llevaba el registro de RF e HU quedó fuera del alcance del equipo (ver contexto: grupo original de 4 personas, dos se retiraron, uno de ellos se llevó el repositorio con la documentación). No es una reconstrucción especulativa: cada historia de usuario está trazada contra un endpoint y/o pantalla real que existe y funciona en el proyecto.
+Este documento se reconstruyó a partir del código ya implementado, después de que el repositorio original donde se llevaba el registro de RF e HU quedó fuera del alcance del equipo (ver contexto: grupo original de 4 personas, dos se retiraron). No es una reconstrucción especulativa: cada historia de usuario está trazada contra un endpoint y/o pantalla real que existe y funciona en el proyecto.
 
 ---
 
