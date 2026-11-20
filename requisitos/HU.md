@@ -1,7 +1,7 @@
 # FOCCUS — Historias de Usuario (HU)
 
 Formato: *Como [rol], quiero [acción], para [beneficio]*. Cada HU indica RF, evidencia (endpoint o pantalla) y estado. Última revisión: 2026-11-20.
-Los resultados de pruebas comunicados corresponden a la ejecución web final tras las últimas correcciones. Móvil, incluido el impacto del nuevo contrato 2FA, quedó fuera de alcance y no se revisó.
+Los símbolos describen implementación, no aprobación integral de pruebas. La evidencia reciente y sus límites figuran en la [matriz](matriz-trazabilidad.md) y el [informe](informe-revision.md). Móvil, incluido el impacto del nuevo contrato 2FA, quedó fuera de alcance y no se revisó.
 
 ## Autenticación y acceso
 
@@ -12,8 +12,8 @@ Los resultados de pruebas comunicados corresponden a la ejecución web final tra
 
 ## Equipo y roles
 
-- **HU-05** — Como administrador, quiero invitar a un miembro por correo con un rol, para que cada persona tenga el acceso que le corresponde. · RF-05 · `POST /users/invite`, `/users/complete-invitation`, `Roles.jsx`, `CompleteInvitation.jsx` · ✅
-- **HU-06** — Como administrador, quiero que solo los administradores del proyecto puedan crear, editar o borrar sus datos y que los usuarios solo los consulten, para evitar cambios no autorizados. · RF-06 · `require_project_admin` / `require_project_member`, `test_project_resource_ownership.py` y suite backend 45/45 · ✅ web (pruebas aisladas; sin BD real ni Flutter)
+- **HU-05** — Como administrador, quiero invitar a un miembro por correo con un rol, para que cada persona tenga el acceso que le corresponde. · RF-05 · `POST /users/invite`, `/users/complete-invitation`, `Roles.jsx`, `CompleteInvitation.jsx` · ✅ implementación; pendiente confirmar recepción de una invitación nueva.
+- **HU-06** — Como administrador, quiero que solo los administradores del proyecto puedan crear, editar o borrar sus datos y que los usuarios solo los consulten, para evitar cambios no autorizados. · RF-06 · `require_project_admin` / `require_project_member`, `test_project_resource_ownership.py`; rechazo de acceso a proyecto y guion ajenos en casos reales · ✅ web (cobertura parcial; faltan otros recursos y operaciones).
 - **HU-07** — Como administrador, quiero sacar a alguien de un proyecto sin borrar su cuenta, para reorganizar equipos. · RF-07 · `DELETE /users/{id_user}/project/{id_project}`, `Roles.jsx` · ✅
 - **HU-08** — Como usuario, quiero eliminar mi propia cuenta, para controlar mis datos. · RF-08 · `DELETE /users/me/account`, `Profile.jsx` · ✅
 - **HU-12** — Como administrador, quiero que cada integrante tenga uno de dos roles fijos por proyecto, para gestionar sus datos como Administrador o consultarlos como Usuario. · RF-12 · `app/utils/auth.py`, `Roles.jsx`, controles de membresía y `test_project_resource_ownership.py` · ✅ web (Administrador 1001; Usuario 1005 y legados 1002–1004 de solo lectura; evidencia aislada). No se requiere catálogo jerárquico configurable; perfil y cuenta personales quedan fuera de estos permisos.
@@ -22,29 +22,29 @@ Los resultados de pruebas comunicados corresponden a la ejecución web final tra
 
 - **HU-09** — Como administrador, quiero gestionar las empresas cliente, para saber quién encarga cada producción. · RF-09 · `/clients` (CRUD), `Clients.jsx`, `test_clients.py` (3 pruebas SQLite aisladas aprobadas, resultado comunicado) · ✅ web
 - **HU-10** — Como administrador, quiero crear y editar proyectos asociados a un cliente, para separar cada producción. · RF-10 · `/projects`, `ProjectRegistration.jsx`, `ProjectSelection.jsx`, `EditProjectModal.jsx` y `test_project_resource_ownership.py` (`PATCH /projects/{id}`: edita y persiste el proyecto propio, devuelve 403 para otro proyecto y este permanece sin cambios) · ✅ web (prueba HTTP aislada; sin BD real)
-- **HU-11** — Como administrador, quiero eliminar un proyecto completo, para mantener ordenado el panel. · RF-11 · `POST /projects/{id}/delete`, `ProjectDashboard.jsx` · ✅
+- **HU-11** — Como administrador, quiero eliminar un proyecto completo, para mantener ordenado el panel. · RF-11 · `POST /projects/{id}/delete`, `ProjectDashboard.jsx`; eliminación de proyecto desechable y dependencias por API · ✅ implementación; confirmación gráfica pendiente.
 
 ## Guion
 
 - **HU-13** — Como administrador, quiero crear el guion subiendo un archivo o escribiéndolo, para tener un punto de partida oficial. · RF-13 · `POST /guiones`, `/guiones/archivo`, `/guiones/texto`, `Guion.jsx` · ✅
 - **HU-14** — Como administrador, quiero que cada edición del guion quede como versión nueva, para comparar su evolución. · RF-14 · `POST /guiones/{id}/versiones`, `/versiones/texto`, tabla `guion_version` · ✅
-- **HU-15** — Como administrador, quiero dejar notas en una versión concreta del guion, para comunicar observaciones sin editarlo. · RF-15 · `POST` y `GET /guiones/versiones/{id}/notas`, `test_guion_notas.py` (5 pruebas aisladas aprobadas, resultado comunicado) · ✅ web
-- **HU-16** — Como administrador, quiero eliminar un guion, para mantener ordenada la sección. · RF-16 · `DELETE /guiones/{id}` · ✅
-- **HU-26** — Como guionista, quiero escribir con bloques (escena, acción, personaje, diálogo…) y exportar a PDF con el formato de la industria, para entregar un guion profesional. · RF-26, RF-27 · `Guion.jsx`, PDF en el frontend · ✅ (web)
+- **HU-15** — Como administrador, quiero dejar notas en una versión concreta del guion, para comunicar observaciones sin editarlo. · RF-15 · `POST` y `GET /guiones/versiones/{id}/notas`; nota persistida, leída por miembro y rechazada su creación para este; separación entre versiones comprobada · ✅ web (pruebas parciales).
+- **HU-16** — Como administrador, quiero eliminar un guion, para mantener ordenada la sección. · RF-16 · `DELETE /guiones/{id}`; limpieza probada con datos aislados y con un guion desechable por API · ✅ implementación; confirmación gráfica pendiente.
+- **HU-26** — Como guionista, quiero escribir con bloques (escena, acción, personaje, diálogo…) y exportar a PDF con el formato de la industria, para entregar un guion profesional. · RF-26, RF-27 · `Guion.jsx`, PDF en el frontend; descarga y contenido básico comprobados tras corrección · ✅ web (faltan casos de formato y paginación).
 
 ## Escenas, galería y desglose
 
 - **HU-17** — Como administrador, quiero dividir el guion en escenas, para trabajar la continuidad escena por escena. · RF-17 · `POST /escenas`, `Escena.jsx` · ✅
-- **HU-18** — Como responsable de continuidad, quiero subir fotos por cada actualización de una escena, para comparar la continuidad entre tomas. · RF-18 · `/escenas/{id}/versiones`, `/fotos`, `test_project_resource_ownership.py` (subida con `guardar_archivo` mockeado y lectura por miembro) · ✅ web (prueba aislada; no Flutter ni BD real)
+- **HU-18** — Como responsable de continuidad, quiero subir fotos por cada actualización de una escena, para comparar la continuidad entre tomas. · RF-18 · `/escenas/{id}/versiones`, `/fotos`; imagen temporal subida, abierta de nuevo y cargada por miembro · ✅ web (faltan más tipos y permisos).
 - **HU-22** — Como responsable de continuidad, quiero una galería de personajes, lugares, objetos y vestuario con versiones y fotos, para consultar cómo debe verse cada cosa. · RF-22 · `/projects/{id}/galeria`, `Galeria.jsx` · ✅
 - **HU-23** — Como equipo de producción, quiero vincular elementos de la galería a una escena, para saber qué necesita cada escena. · RF-23 · `/escenas/{id}/desglose/galeria` · ✅
-- **HU-24** — Como productor, quiero un desglose por escena con sus requerimientos, para planear el rodaje. · RF-24 · `/guiones/{id}/desglose`, `Desglose.jsx` · ✅
+- **HU-24** — Como productor, quiero un desglose por escena con sus requerimientos, para planear el rodaje. · RF-24 · `/guiones/{id}/desglose`, `POST /guiones/{id}/desglose/importar`, `Desglose.jsx`; importación sintética comprobada · ✅ implementación (faltan documentos complejos).
 
 ## Rodaje
 
 - **HU-19** — Como administrador, quiero un cronograma de rodaje, para organizar fechas y locaciones. · RF-19 · `/rodajes`, `Rodaje.jsx` · ✅
-- **HU-20** — Como administrador, quiero registrar procesos dentro de un rodaje, para seguir el avance de cada jornada. · RF-20 · `/rodajes/{id}/procesos`, `test_project_resource_ownership.py` (PATCH y persistencia) · ✅ web (prueba aislada; sin BD real)
-- **HU-25** — Como productor, quiero importar las escenas del guion a las jornadas, para no cargarlas una por una. · RF-25 · `POST /projects/{id}/rodajes/importar` · ✅
+- **HU-20** — Como administrador, quiero registrar procesos dentro de un rodaje, para seguir el avance de cada jornada. · RF-20 · `/rodajes/{id}/procesos`, `test_project_resource_ownership.py`; edición conservada al volver a abrir el proceso · ✅ web (comprobación parcial).
+- **HU-25** — Como productor, quiero importar las escenas del guion a las jornadas, para no cargarlas una por una. · RF-25 · `POST /projects/{id}/rodajes/importar`; PDF sintético creó una jornada y asignó una escena · ✅ implementación (faltan documentos complejos).
 
 ## Códigos y búsqueda (solo administrador)
 

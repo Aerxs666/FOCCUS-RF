@@ -3,6 +3,7 @@
 Última revisión: 2026-11-20. Estados: ✅ implementado · 🟡 parcial · 🔲 pendiente.
 "Web" = frontend React + backend FastAPI. "Móvil" = app Flutter (rama `mobile` del repo de código).
 Móvil quedó fuera de alcance por petición de la usuaria: no se validó la columna y se conservan sus estados anteriores. El impacto del nuevo contrato 2FA en móvil tampoco se revisó.
+Los símbolos indican estado de implementación, **no aprobación integral de las pruebas**. La evidencia y sus límites se detallan abajo y en el [informe](informe-revision.md).
 
 ## Actores
 
@@ -56,9 +57,20 @@ El alcance de roles afecta a los datos del proyecto, no a las acciones personale
 
 ## Notas
 
-1. Los permisos son **por proyecto** (`require_project_admin` / `require_project_member`), no solo "Administrador global". La suite final incluye `test_project_resource_ownership.py`: aislamiento de IDs de recursos por proyecto (incluidos personajes y escenarios), rechazo al crear con un `id_project` ajeno y PATCH de proceso exitoso con persistencia. Evidencia aislada; no se probó BD real ni Flutter.
-2. Son roles fijos, no un catálogo jerárquico configurable. La tabla `roles` vacía no demuestra por sí sola su cumplimiento o incumplimiento. Perfil y cuenta propios quedan fuera de esta restricción. Los estados de cumplimiento web corresponden al código y pruebas aisladas, no a una integración con servicios reales.
+1. Los permisos son **por proyecto** (`require_project_admin` / `require_project_member`), no solo "Administrador global". Además de las pruebas aisladas de `test_project_resource_ownership.py`, se rechazó el acceso a un proyecto ajeno y a un guion y sus versiones desde otro proyecto; faltan otros recursos y operaciones por rol.
+2. Son roles fijos, no un catálogo jerárquico configurable. La tabla `roles` vacía no demuestra por sí sola su cumplimiento o incumplimiento. Perfil y cuenta propios quedan fuera de esta restricción. Las comprobaciones con servicios reales son parciales y no validan todos los permisos.
 3. Hoy hay tres entradas: `POST /guiones` (archivo), `/guiones/archivo` y `/guiones/texto`.
-4. Notas: `POST` requiere administrador y `GET` permite consulta a miembros en `/guiones/versiones/{id}/notas`. Las 5 pruebas aisladas de `test_guion_notas` pasaron en la ejecución final comunicada. `guion_nota` y `proceso_rodaje` tienen 0 filas según la lectura comunicada; esto no prueba su comportamiento en BD real.
-5. `test_project_resource_ownership.py` cubre subida de foto con `guardar_archivo` mockeado y lectura por un miembro. Esto no verifica almacenamiento real ni una integración con BD.
-6. La prueba existente `test_galeria_solo_objetos` fallaba por `codigo: null` en un elemento sin ficha vinculada; el código se ajustó para omitir la propiedad cuando falta el código de personaje o lugar. Las 19 pruebas aisladas de `test_codigos` pasaron en la ejecución final comunicada.
+4. Notas: `POST` requiere administrador y `GET` permite consulta a miembros en `/guiones/versiones/{id}/notas`. Se guardó y volvió a abrir una nota, un miembro la leyó y su intento de crearla recibió 403; también se comprobó su separación entre dos versiones de prueba.
+5. Se subió y volvió a abrir una imagen temporal de continuidad; un miembro pudo cargarla. Faltan más tipos y comprobaciones de permisos.
+6. La prueba `test_galeria_solo_objetos` fallaba por `codigo: null` en un elemento sin ficha vinculada y se ajustó la respuesta. Un administrador buscó un código de escena; un Usuario recibió 403 al buscar y no recibió códigos en respuestas de guiones y galería. Faltan los demás módulos.
+
+## Evidencia reciente y pruebas pendientes
+
+Fuente: `docs/agentes/GUIA_PRUEBAS_RF.md` del repositorio FOCCUS y commit `2397a2b`. La guía registra **80 pruebas aisladas de backend y 16 de frontend**, compilación web correcta y análisis sin errores en los archivos web modificados. Los recorridos siguientes son parciales:
+
+- **RF-04 y RF-05:** una invitación creó el miembro pero notificó cero correos enviados; después se recuperó el acceso por correo. Se corrigió el cierre SMTP tras una desconexión observada, sin identificar con certeza la causa original. Queda probar una invitación nueva y su recepción; la llegada de un correo sin identificar no demuestra ese caso.
+- **RF-11 y RF-16:** se corrigió la limpieza al eliminar guiones. Se comprobó con datos y archivos aislados y con un guion desechable eliminado por API, incluida la ausencia de sus dependencias y carpeta. Un proyecto desechable también se eliminó por API. Falta confirmar ambos recorridos desde la interfaz; no se hizo respaldo antes de esos borrados.
+- **RF-13 a RF-15:** se probaron importaciones mínimas de PDF con texto, DOCX y FDX en la interfaz; el DOCX se reabrió tras recargar. Se comprobaron contenido y nota en versiones diferentes. Faltan documentos complejos y PDF escaneados; no se comprobó OCR.
+- **RF-18, RF-20, RF-22 y RF-23:** se volvió a abrir una foto temporal, se conservó una edición de proceso y se consultaron una ficha de galería, su vínculo a escena y una versión de uso. No cubren todas las variantes ni permisos.
+- **RF-24 y RF-25:** se corrigieron casos de encabezados y fechas de PDF. Dos PDF sintéticos importados en la aplicación crearon una escena con tres requerimientos y una jornada con esa escena; la jornada persistió tras recargar. Faltan documentos reales complejos y OCR; la reimportación puede modificar datos, por lo que debe probarse con recursos desechables.
+- **RF-27:** se corrigió el manejador que impedía exportar pese a existir texto. Se descargaron dos versiones y se comprobó su contenido diferencial; en una se revisaron portada, encabezados, tamaño Carta y Courier. Una prueba aislada con jsPDF real cubrió texto sintético multipágina, Courier 12 y numeración, no márgenes ni descarga. Faltan casos de formato y paginación.

@@ -2,47 +2,38 @@
 
 Fecha: 2026-11-20.
 
-## Alcance de esta pasada
+## Alcance y fuentes
 
-Se actualizaron los requisitos y su trazabilidad con la decisión de alcance y la evidencia web final.
+Esta revisión incorpora la evidencia web de `docs/agentes/GUIA_PRUEBAS_RF.md` del repositorio FOCCUS y las correcciones del commit `2397a2b`. Los símbolos de implementación de RF y HU no significan aprobación integral. **Móvil quedó fuera de alcance**: sus estados anteriores y el impacto del contrato 2FA no se validaron.
 
-**Móvil quedó fuera de alcance por petición de la usuaria.** La columna móvil no se validó y sus estados anteriores se conservaron; tampoco se revisó el impacto del nuevo contrato 2FA en la aplicación móvil. No se probaron BD real ni correo real.
+La guía registra comprobaciones puntuales con aplicación, API, BD y correo reales, además de pruebas aisladas. Son evidencia parcial de los casos descritos, no una validación de todos los recorridos ni de todos los servicios. La última ejecución local indicada en la guía pasó 80 pruebas aisladas de backend y 16 de frontend; el frontend compiló y el análisis de los archivos web modificados no reportó errores.
+
+En una ejecución anterior se comunicaron 45 pruebas de backend y 10 de frontend, compilación correcta con advertencia de tamaño de chunk y lint focalizado aprobado. El lint global conservaba 14 errores preexistentes en `Escena.jsx`, `Landing.jsx`, `Profile.jsx`, `ProjectRegistration.jsx` y `ProjectSelection.jsx`; esta revisión no confirma su estado actual.
 
 ## Decisión sobre roles: RF-06 y RF-12
 
-- Hay dos roles fijos por proyecto: **Administrador** (`id_rol` 1001), que gestiona los datos del proyecto, y **Usuario** (`id_rol` 1005), que solo los consulta. Los valores legados 1002–1004 deben ser de solo lectura.
-- No se requiere un catálogo jerárquico configurable. Las acciones personales sobre perfil y cuenta quedan fuera de los permisos sobre datos del proyecto.
-- `app/utils/auth.py` contiene controles de membresía y administración por proyecto. Según la auditoría de rutas comunicada, las escrituras del proyecto requieren `require_project_admin`; las rutas restantes con `require_project_member` son GET. La creación de notas exige administrador y su consulta permite miembros.
-- El cierre web incluye validaciones de pertenencia recurso→proyecto. `test_project_resource_ownership.py` cubre aislamiento de IDs de recursos por proyecto (incluidos personajes y escenarios), rechazo al crear con un `id_project` ajeno, PATCH exitoso de un proceso con persistencia y subida de foto con `guardar_archivo` mockeado, seguida de lectura por un miembro.
-- RF-06/HU-06, RF-12/HU-12, RF-18/HU-18 y RF-20/HU-20 quedan **cumplidos en web** conforme al código y evidencia aislada comunicada. No se extrapola ese resultado a móvil ni a servicios reales. La ausencia de filas en `roles` no prueba ni impide por sí sola el cumplimiento de los roles fijos.
+- Los roles son fijos por proyecto: Administrador (`1001`) gestiona sus datos y Usuario (`1005`) los consulta; los valores legados `1002–1004` deben ser de solo lectura. No se requiere un catálogo jerárquico configurable. Las acciones personales sobre perfil y cuenta quedan fuera de esta restricción.
+- `app/utils/auth.py` contiene controles de membresía y administración. La auditoría comunicada indicó que las escrituras de proyecto requieren `require_project_admin` y que las rutas restantes con `require_project_member` son GET. Las pruebas aisladas cubren pertenencia de recursos, creación con proyecto ajeno, edición de proceso y lectura de una foto con almacenamiento simulado.
+- Con dos cuentas y proyectos de prueba se rechazó el acceso a un proyecto ajeno y a un guion y sus versiones mediante el proyecto propio. Un miembro pudo leer una nota y una imagen, pero recibió 403 al crear una nota y buscar un código. **Faltan otros recursos y operaciones por rol**; no se extrapola a Flutter.
 
-## Validación final comunicada
+## Comprobaciones y correcciones recientes
 
-- Backend: suite completa `python -m unittest discover -s tests -v` en `FOCCUS\backend\api_usuarios`: **45/45**.
-- Frontend: `npm test`: **10/10**; `npm run build`: correcto, con advertencia existente de chunk mayor a 500 kB.
-- El lint focalizado de los archivos JS modificados pasó, incluido `npm exec eslint -- src/screen/Login.jsx`. La ejecución global actual conserva 14 errores preexistentes en `Escena.jsx`, `Landing.jsx`, `Profile.jsx`, `ProjectRegistration.jsx` y `ProjectSelection.jsx`, archivos no modificados en esta pasada. No se corrigieron ni se atribuyen a esta pasada esos issues preexistentes.
-- El aislamiento de las pruebas no representa una verificación de integración con BD o correo reales. Flutter no se probó.
-
-## Comprobaciones y cambios
-
-| Requisito | Evidencia y resultado | Límite o pendiente |
+| RF / HU | Evidencia y resultado | Límite o pendiente |
 |---|---|---|
-| RF-03 / HU-03 | No se entrega JWT de acceso antes de verificar el OTP; `backend/api_usuarios/tests/test_2fa.py`: 7/7 pruebas HTTP aisladas aprobadas, según el resultado comunicado. | Dependencias simuladas; no equivale a verificar correo y BD reales. |
-| RF-09 / HU-09 | `Clients.jsx` implementa la pantalla CRUD y existen endpoints `/clients`. `test_clients.py`: 3 pruebas SQLite aisladas aprobadas sobre correo normalizado/duplicado, bloqueo de borrado con proyectos asociados y propagación de errores de integridad no relacionados con correo. | No se atribuye una prueba integral del CRUD en BD real. |
-| RF-10 / HU-10 | `EditProjectModal.jsx` permite editar el proyecto activo con `PATCH /projects/{id}`. `test_project_resource_ownership.py` verifica por HTTP aislado que un administrador edita y persiste su propio proyecto, recibe 403 al editar otro y que el proyecto ajeno permanece sin cambios. | Prueba aislada; no equivale a integración con BD real. |
-| RF-15 / HU-15 | `GET` y `POST /guiones/versiones/{id}/notas`; `test_guion_notas.py`: 5 pruebas aisladas aprobadas. El código exige administrador para crear y permite a miembros consultar, con aislamiento por proyecto y versión. | Las pruebas aisladas no equivalen a comprobar la BD real. |
-| RF-29 / HU-27 | La prueba previa `test_galeria_solo_objetos` fallaba al aparecer `codigo: null` en un elemento sin ficha vinculada. `app/utils/codigos.py` ahora omite la propiedad cuando no hay código de personaje o lugar; se comunicaron 19 pruebas aprobadas de `test_codigos.py`. | Son pruebas aisladas; no prueban comportamiento en BD real. |
-| RF-06, RF-12 / HU-06, HU-12 | `test_project_resource_ownership.py` cubre aislamiento de IDs de recursos entre proyectos, incluidos personajes y escenarios, y creación con `id_project` ajeno. | Suite aislada; no se probó BD real ni Flutter. |
-| RF-18 / HU-18 | `test_project_resource_ownership.py` sube una foto (mock solo de `guardar_archivo`) y permite leerla como miembro. | No prueba almacenamiento externo ni correo/BD reales. |
-| RF-20 / HU-20 | `test_project_resource_ownership.py` verifica PATCH de proceso exitoso y persistencia. | Prueba aislada; no equivale a integración con BD real. |
+| RF-03 / HU-03 | `test_2fa.py`: 7 pruebas HTTP aisladas comunicadas; el acceso se entrega tras verificar el código. | Prueba aislada, no validación integral de todos los casos de correo. |
+| RF-04 y RF-05 / HU-04 y HU-05 | La invitación inicial creó el miembro pero notificó cero correos enviados. Después se recuperó su acceso por correo. Se corrigió el cierre SMTP tras una desconexión observada. | No se identificó con certeza la causa original ni se probó una invitación nueva. La llegada de un correo sin identificar no demuestra su recepción. |
+| RF-09 / HU-09 | `Clients.jsx`, endpoints `/clients` y tres pruebas SQLite aisladas comunicadas. | No se atribuye una prueba integral del CRUD en BD real. |
+| RF-10 y RF-11 / HU-10 y HU-11 | Proyecto de demostración creado; proyecto desechable eliminado por API y ausencia de recursos y archivos comprobada. La prueba aislada de PATCH cubre edición propia y rechazo de proyecto ajeno. | Falta confirmación gráfica de la eliminación; no se hizo respaldo antes del borrado registrado. |
+| RF-13 a RF-15 / HU-13 a HU-15 | PDF con texto, DOCX y FDX sintéticos se importaron por interfaz y se leyeron; el DOCX se reabrió tras recargar. Se comprobaron contenido y nota en versiones distintas; un miembro leyó la nota y recibió 403 al crearla. | Son ejemplos mínimos; faltan documentos complejos y PDF escaneados. No se comprobó OCR. |
+| RF-16 / HU-16 | Se corrigió la limpieza de dependencias, códigos y archivos. Las pruebas aisladas incluyen desgloses compartidos y fallos de limpieza de códigos. Se eliminó por API un guion desechable y se comprobó la ausencia de sus dependencias y carpeta. | Falta confirmación gráfica; no se hizo respaldo antes del borrado registrado. |
+| RF-18, RF-20, RF-22 y RF-23 / HU-18, HU-20, HU-22 y HU-23 | Una imagen temporal de continuidad se volvió a abrir y un miembro la cargó; una edición de proceso persistió; se comprobó una ficha de galería, su escena y una versión de uso. | Faltan tipos de foto, variantes y más pruebas de permisos. |
+| RF-24 y RF-25 / HU-24 y HU-25 | Se corrigieron casos de encabezados y fechas de PDF. Dos importaciones sintéticas por aplicación crearon una escena con tres requerimientos y una jornada con esa escena; la jornada persistió tras recargar. | Faltan documentos reales complejos y OCR. La reimportación puede modificar escenas o requerimientos: usar recursos desechables. |
+| RF-27 / HU-26 | Se corrigió el manejador de exportación. Se descargaron dos versiones y se comprobó contenido diferencial; en una se revisaron portada, encabezados, Carta y Courier. jsPDF real se probó aisladamente con texto multipágina, Courier 12 y numeración. | La prueba aislada no cubrió márgenes ni descarga; faltan otros casos de formato y paginación. |
+| RF-29 y RF-30 / HU-27 y HU-28 | Se ajustó la omisión de `codigo` cuando no existe código de personaje o lugar. Un administrador buscó un código de escena; un miembro recibió 403 y no recibió códigos en respuestas de guiones y galería. | Faltan comprobar los demás módulos y más operaciones. |
 
-## Pendientes generales
+## Pendientes y precauciones
 
-1. Completar criterios de aceptación, prioridades y casos de prueba trazables para los RF.
-2. Mantener como pendientes técnicos los archivos en la nube, la unificación de `apiFetch` y la deuda de estilos. Los estados móviles históricos y el impacto móvil del nuevo contrato 2FA no se validaron.
-
-## Riesgos para la exposición
-
-- Verificar previamente la disponibilidad del backend, la BD y el envío de correo.
-- No presentar los resultados de pruebas aisladas como una verificación integral contra BD o correo reales.
-- El build conserva una advertencia de chunk mayor a 500 kB. El lint focalizado de los archivos JS modificados, incluido `Login`, pasó; el lint global conserva 14 errores preexistentes en los archivos citados.
+1. Ejecutar y registrar los casos pendientes de la guía con fecha, resultado y evidencia sin datos sensibles; no presentar las comprobaciones parciales como aprobación completa.
+2. Para pruebas destructivas futuras, acordar previamente un respaldo verificable de BD y archivos, y usar recursos desechables; no eliminar el proyecto de exposición.
+3. Verificar servicios y buzones antes de la exposición. Completar criterios de aceptación, prioridades y casos de prueba trazables.
+4. Mantener como pendientes técnicos los archivos en la nube, la unificación de `apiFetch` y la deuda de estilos. Revisar móvil y el impacto de 2FA cuando entre en alcance.
