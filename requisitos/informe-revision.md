@@ -13,8 +13,16 @@ En una ejecución anterior se comunicaron 45 pruebas de backend y 10 de frontend
 ## Decisión sobre roles: RF-06 y RF-12
 
 - Los roles son fijos por proyecto: Administrador (`1001`) gestiona sus datos y Usuario (`1005`) los consulta; los valores legados `1002–1004` deben ser de solo lectura. No se requiere un catálogo jerárquico configurable. Las acciones personales sobre perfil y cuenta quedan fuera de esta restricción.
+- Los permisos son **por proyecto** (`require_project_admin` / `require_project_member`), no solo de Administrador global. La tabla `roles` vacía no demuestra por sí sola el cumplimiento o incumplimiento de los requisitos.
 - `app/utils/auth.py` contiene controles de membresía y administración. La auditoría comunicada indicó que las escrituras de proyecto requieren `require_project_admin` y que las rutas restantes con `require_project_member` son GET. Las pruebas aisladas cubren pertenencia de recursos, creación con proyecto ajeno, edición de proceso y lectura de una foto con almacenamiento simulado.
 - Con dos cuentas y proyectos de prueba se rechazó el acceso a un proyecto ajeno y a un guion y sus versiones mediante el proyecto propio. Un miembro pudo leer una nota y una imagen, pero recibió 403 al crear una nota y buscar un código. **Faltan otros recursos y operaciones por rol**; no se extrapola a Flutter.
+
+## Aclaraciones de alcance y evidencia por requisito
+
+- **RF-13:** las entradas de creación de guion comprobadas/documentadas son `POST /guiones` (archivo), `/guiones/archivo` y `/guiones/texto`.
+- **RF-15:** la creación de notas requiere administrador y la consulta de miembros se realiza en `/guiones/versiones/{id}/notas`. Se guardó y reabrió una nota; un miembro la leyó y recibió 403 al intentar crearla. También se comprobó que las notas correspondían a versiones de prueba distintas.
+- **RF-18:** se subió y reabrió una imagen temporal de continuidad; un miembro también pudo cargar una imagen. Faltan otros tipos de foto y comprobaciones de permisos.
+- **RF-29 y RF-30:** `test_galeria_solo_objetos` fallaba por `codigo: null` en un elemento sin ficha vinculada; se ajustó la respuesta. Un administrador buscó un código de escena. Un Usuario recibió 403 al buscar y no recibió códigos en respuestas de guiones y galería. Faltan comprobaciones de otros módulos.
 
 ## Comprobaciones y correcciones recientes
 
