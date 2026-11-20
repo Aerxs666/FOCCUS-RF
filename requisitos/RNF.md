@@ -5,9 +5,9 @@ Propuestos a partir de lo que el proyecto ya hace. Verificar cada uno antes de e
 | ID | Categoría | Requisito | Estado |
 |---|---|---|---|
 | RNF-01 | Seguridad | Las contraseñas se guardan cifradas (bcrypt) y la sesión usa JWT firmado con `JWT_SECRET_KEY` | ✅ |
-| RNF-02 | Seguridad | Las acciones de escritura exigen token válido y permiso por rol en el proyecto | ✅ |
+| RNF-02 | Seguridad | Las acciones de escritura de datos del proyecto exigen token válido y permiso por rol en el proyecto | ✅ web (código y pruebas aisladas de pertenencia recurso→proyecto; móvil y servicios reales no validados) |
 | RNF-03 | Seguridad | Los secretos (`.env`, claves, backups) no se suben a git | ✅ |
-| RNF-04 | Seguridad | El token no debería servir hasta completar el 2FA | 🔲 (backlog) |
+| RNF-04 | Seguridad | El JWT de acceso se entrega solo después de completar el 2FA | ✅ (web: 7/7 pruebas HTTP aisladas comunicadas; no prueba de correo o BD reales) |
 | RNF-05 | Usabilidad | Texto mínimo de 12 px, foco visible y estados con acción (cargando, error, vacío) | 🟡 (solo algunos módulos) |
 | RNF-06 | Usabilidad | Modo claro y oscuro en móvil | ✅ |
 | RNF-07 | Compatibilidad | Web en navegadores modernos; móvil en Android (iOS sin probar) | 🟡 |

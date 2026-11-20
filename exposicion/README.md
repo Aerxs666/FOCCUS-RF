@@ -27,7 +27,7 @@ Esquema base de 10 a 15 minutos. Los datos de acceso están en `privado/` (no se
 
 ## Preguntas probables
 
-- **¿Cómo se protege la información?** JWT, contraseñas con bcrypt, permisos por rol en cada proyecto, secretos fuera de git.
+- **¿Cómo se protege la información?** JWT, contraseñas con bcrypt, controles por rol y secretos fuera de git. La suite web incluye pruebas aisladas de pertenencia de recursos al proyecto; no equivale a una validación con BD real.
 - **¿Por qué códigos?** En audiovisual todo se identifica con un código para hallarlo rápido; solo el admin los ve.
-- **¿Qué falta?** 2FA que bloquee el token, archivos en la nube, PDF y bloques en móvil.
+- **¿Qué falta?** Guardar archivos en la nube. La prueba HTTP aislada de RF-10 verifica que el administrador edita y persiste su propio proyecto, obtiene 403 al editar otro y que el proyecto ajeno permanece igual. El lint focalizado de los archivos JS modificados, incluido `Login`, pasó. El lint global conserva 14 errores preexistentes en `Escena.jsx`, `Landing.jsx`, `Profile.jsx`, `ProjectRegistration.jsx` y `ProjectSelection.jsx`, archivos no modificados en esta pasada. Móvil no se revisó, incluido el impacto del nuevo contrato 2FA.
 - **¿Cómo se respalda la BD?** Script de backup con fecha antes de cada cambio estructural.

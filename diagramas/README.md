@@ -55,17 +55,17 @@ erDiagram
 ```mermaid
 sequenceDiagram
   actor U as Usuario
-  participant W as Web/Móvil
+  participant W as Web
   participant A as API
   participant M as Correo
   U->>W: correo y contraseña
   W->>A: POST /users/login
-  A-->>W: token
+  A-->>W: intento pendiente (sin JWT de acceso)
   W->>A: POST /users/2fa/send
   A->>M: código de un solo uso
   U->>W: código
   W->>A: POST /users/2fa/verify
-  A-->>W: acceso
+  A-->>W: JWT de acceso tras verificar el código
 ```
 
 ## Secuencia: buscar por código (admin)
