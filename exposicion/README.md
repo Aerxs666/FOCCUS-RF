@@ -2,6 +2,8 @@
 
 Esquema base de 10 a 15 minutos. Los datos de acceso están en `privado/` (no se sube a git).
 
+[Consultas SQL por RF](consultas-rf.md)
+
 ## Estructura
 
 1. **Problema** (1 min): la continuidad en un rodaje.
