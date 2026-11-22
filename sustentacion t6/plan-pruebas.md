@@ -23,7 +23,7 @@ En cada nivel incluir casos positivos, negativos y de permisos. Registrar tambi�
 
 ## Diseño y registro de casos
 
-Mantener **al menos 20 casos** con identificador, datos ficticios, pasos reproducibles, resultado esperado, resultado obtenido y estado. Cubrir los tipos y módulos anteriores; la cifra mínima no demuestra cobertura completa. La [matriz ya ejecutada de 27 casos](README.md#t6-08--matriz-de-27-casos) satisface la cantidad y se complementa con [9 casos de API](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/docs/t6-evidencia-20261121/docs/agentes/T6_EVIDENCIA.md#matriz-complementaria-de-api-integrada).
+Mantener **al menos 20 casos** con identificador, datos ficticios, pasos reproducibles, resultado esperado, resultado obtenido y estado. Cubrir los tipos y módulos anteriores; la cifra mínima no demuestra cobertura completa. La [matriz ya ejecutada de 27 casos](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/docs/t6-evidencia-20261121/README.md#matriz-de-casos-ejecutados) satisface la cantidad y se complementa con [9 casos de API](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/docs/t6-evidencia-20261121/docs/agentes/T6_EVIDENCIA.md#matriz-complementaria-de-api-integrada).
 
 | Área | Cobertura registrada y próximos casos |
 |---|---|
@@ -46,4 +46,4 @@ No se inventan pasos ni resultados de casos aún no diseñados o ejecutados. Al 
 
 ## Estado al cierre de esta documentación
 
-La [evidencia pública](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/docs/t6-evidencia-20261121/docs/agentes/T6_EVIDENCIA.md) registra 36 pruebas backend, ejecución de Newman y 2 recorridos de navegador estáticos; **no se ha ejecutado todo este plan**. Faltan, entre otros, MySQL aislado, instalación limpia, login completo, recorrido de galería y demo con persistencia, y pruebas móviles. El reporte registra un defecto con severidad y estado en archivo; aún no se ha demostrado un sistema de seguimiento mediante issues.
+La [evidencia pública](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/docs/t6-evidencia-20261121/docs/agentes/T6_EVIDENCIA.md) registra 36 pruebas backend, ejecución de Newman y 2 recorridos de navegador estáticos; **no se ha ejecutado todo este plan**. El equipo confirma la instalación desde cero el 22-11-2026, sin verificación independiente del agente. Faltan, entre otros, pruebas con MySQL aislado, login completo, recorrido de galería y demo con persistencia, y pruebas móviles. El reporte registra un defecto con severidad y estado en archivo; aún no se ha demostrado un sistema de seguimiento mediante issues.

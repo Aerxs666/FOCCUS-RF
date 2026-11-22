@@ -9,20 +9,20 @@ Resumen del equipo para preparar la exposición; la calificación corresponde al
 | 01 | Cierre T6 y orientación T7 | ✅ | Cierre del desarrollo web; las pantallas de [guion](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/02ffb2de7c123b5b228aa2e2df9298faf4278eca/frontend/src/screen/Guion.jsx) y [proyecto](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/02ffb2de7c123b5b228aa2e2df9298faf4278eca/frontend/src/screen/ProjectDashboard.jsx) muestran módulos, no una demo completa. Móvil continúa pendiente. |
 | 02 | Retrospectivas | ⏸ En proceso | Faltan dos retrospectivas reales con reflexión sobre las pruebas. |
 | 03 | Backend funcional y responsabilidades | ✅ | FOCCUS utiliza **un servicio FastAPI** y organiza sus funciones en routers (usuarios, proyectos, guion, escenas, galería y rodaje). El [arranque probado](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/docs/t6-evidencia-20261121/docs/agentes/T6_EVIDENCIA.md#ejecución-y-límites) fue simulado. La interpretación del criterio la valida el instructor. |
-| 04 | JWT, validación e instalación | 🟡 Parcial | ✅ JWT y validaciones: 27 pruebas aisladas. 🟡 Instalación desde cero y login completo con 2FA: no comprobados. |
-| 05 | Arquitectura y recorrido integral | 🟡 Parcial | El diagrama se contrastó con rutas y pantallas. La demo completa con API y persistencia no está probada. |
+| 04 | JWT, validación e instalación | ✅ | El equipo confirma instalación desde cero, JWT y validación el 22-11-2026. La instalación no fue verificada independientemente por el agente; [pruebas aisladas y comandos](#comandos-para-repetir-las-pruebas). |
+| 05 | Arquitectura y recorrido integral | 🟡 Parcial | [Diagramas y rutas](#evidencia-requisito-5); la demo completa con API y persistencia no está probada. |
 | 06 | Bonificación IoT | ➖ No se realiza | Decisión del equipo; no se presenta un prototipo. |
 | 07 | Plan de pruebas | ✅ | [Plan aprobado por el usuario](plan-pruebas.md); aprobar el plan no significa que se hayan ejecutado todos los casos. |
 | 08 | Casos de prueba | ✅ | 27 casos de seguridad y 9 de API registrados en la [evidencia pública](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/docs/t6-evidencia-20261121/docs/agentes/T6_EVIDENCIA.md#matriz-complementaria-de-api-integrada). |
 | 09 | Automatización y cobertura | ✅ | 93 % de sentencias de `auth.py`; Newman: 7/7 aserciones en una API parcial. No representa cobertura integral del producto. |
-| 10 | Reporte y seguimiento de defectos | 🟡 Parcial | T6-D01 tiene severidad y estado en el [registro](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/docs/t6-evidencia-20261121/docs/agentes/T6_EVIDENCIA.md#registro-local-de-defectos-y-seguimiento). No se creó issue: GitHub pidió iniciar sesión. |
+| 10 | Reporte y seguimiento de defectos | 🟡 Parcial | [Reporte T6-D01](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/docs/t6-evidencia-20261121/docs/agentes/T6_EVIDENCIA.md#registro-local-de-defectos-y-seguimiento) y defectos reales en los ciclos [A](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/fix/t6-ciclo-a/docs/agentes/T6_CICLO_IE.md) y [B](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/fix/t6-ciclo-b/docs/agentes/T6_CICLO_LUGARES.md). Pendiente registrarlos como issues; GitKraken pidió iniciar sesión y no se pudo abrir la ventana, por lo que su acceso no se comprobó. |
 | 11 | Ciclos de corrección | ✅ | Dos ciclos publicados: [A](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/fix/t6-ciclo-a/docs/agentes/T6_CICLO_IE.md) y [B](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/fix/t6-ciclo-b/docs/agentes/T6_CICLO_LUGARES.md). Ramas separadas, aún no integradas en `main`. |
-| 12 | README y documentación de API | ✅ | El [README](https://github.com/Cr4ckJu4nF3/FOCCUS/tree/docs/t6-evidencia-20261121#pruebas-y-evidencia-t6) describe módulos y rutas; `/openapi.json` respondió 200 y documentó 69 rutas en un arranque simulado. No se verificó instalación limpia ni infraestructura real. |
+| 12 | README y documentación de API | ✅ | El [README](https://github.com/Cr4ckJu4nF3/FOCCUS/tree/docs/t6-evidencia-20261121#pruebas-y-evidencia-t6) describe módulos y rutas; `/openapi.json` respondió 200 y documentó 69 rutas en un arranque simulado. El agente no verificó instalación limpia ni infraestructura real. |
 | 13 | Historial de construcción y corrección | ✅ | Hay commits de tipo [`feat`](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/7ff51433c5d85f577053f33636fd6c6d1483c2ac) y [`fix`](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/2397a2b121bfe9367107a86a1d85ade52f5777c5). No se demuestra vínculo con issues. |
 | 14 | Linter y regresiones T5 | ➖ No se realiza | Decisión del equipo. No se afirma una exención oficial ni que el criterio esté aprobado. |
 | 15 | Comparación de backends y deuda | ⏸ Pausado | La comparación queda pendiente; la deuda técnica está anotada en la [evidencia T6](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/docs/t6-evidencia-20261121/docs/agentes/T6_EVIDENCIA.md). |
 
-**Estados:** ✅ evidencia para lo indicado; 🟡 parcial; ⏸ pendiente o pausado; ➖ el equipo decidió no realizarlo. No son calificaciones oficiales.
+**Estados:** ✅ evidencia o confirmación del equipo según se indique; 🟡 parcial; ⏸ pendiente o pausado; ➖ el equipo decidió no realizarlo. No son calificaciones oficiales.
 
 ## Comandos para repetir las pruebas
 
@@ -57,9 +57,11 @@ Usar la rama publicada `docs/t6-evidencia-20261121`, abrir `backend/api_usuarios
 newman run tests\FOCCUS_T6.postman_collection.json --env-var baseUrl=http://127.0.0.1:8765 --reporters cli
 ```
 
-El resultado registrado fue 36 pruebas aprobadas, 93 % de sentencias y 7/7 aserciones de Newman. El arranque simulado no comprueba MySQL, SMTP ni una instalación desde cero. Consulta los límites en la [evidencia publicada](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/docs/t6-evidencia-20261121/docs/agentes/T6_EVIDENCIA.md#ejecución-y-límites).
+El resultado registrado fue 36 pruebas aprobadas, 93 % de sentencias y 7/7 aserciones de Newman. El arranque simulado no comprueba MySQL, SMTP ni una instalación desde cero. La [evidencia publicada](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/docs/t6-evidencia-20261121/docs/agentes/T6_EVIDENCIA.md#verificación-complementaria-22-11-2026) documenta un entorno virtual nuevo y la instalación de dependencias, no una instalación completa. La confirmación del equipo es independiente de esa prueba y no fue verificada por el agente.
 
-## Arquitectura y recorrido de ejemplo
+## Evidencia requisito 5
+
+### Arquitectura
 
 El código reúne los routers en [un `main.py`](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/02ffb2de7c123b5b228aa2e2df9298faf4278eca/backend/api_usuarios/app/main.py). React es el cliente web; Flutter consume la misma API, pero su integración queda pendiente de validar. El almacenamiento de archivos es local y el correo se envía por SMTP, según [`file_storage.py`](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/02ffb2de7c123b5b228aa2e2df9298faf4278eca/backend/api_usuarios/app/utils/file_storage.py) y [`mail.py`](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/02ffb2de7c123b5b228aa2e2df9298faf4278eca/backend/api_usuarios/app/utils/mail.py).
 
@@ -76,6 +78,8 @@ flowchart LR
   API -->|Guiones y fotos| F[Archivos locales]
   API -->|Códigos 2FA y otros correos| S[SMTP]
 ```
+
+### Flujo end-to-end de ejemplo
 
 La app web tiene rutas para [login, verificación y módulos](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/02ffb2de7c123b5b228aa2e2df9298faf4278eca/frontend/src/routes.jsx). Este recorrido es una **visita de ejemplo**, no una secuencia obligatoria entre módulos ni evidencia de que se haya hecho una demo integral:
 
