@@ -1,6 +1,6 @@
 # Diagramas
 
-Todos en Mermaid: GitHub los dibuja solo.
+Diagramas en Mermaid, visibles en GitHub.
 
 ## Casos de uso
 
@@ -22,14 +22,22 @@ flowchart LR
 
 ## Arquitectura
 
+Vista de la revisión del 2026-11-21: `FOCCUS` en `main` (`9126d8f`) con cambios locales. El catálogo y la gestión de escenas se incorporaron después en `60e43ad`. Esto no identifica la versión instalada ni demuestra una integración en ejecución. La rama móvil observada fue `98c6a42`; su aplicación instalada e integración no se verificaron.
+
 ```mermaid
 flowchart LR
-  W[Web React + Vite] -->|HTTP JSON + JWT| API[FastAPI]
-  F[App Flutter] -.->|Integración con API sin verificar| API
-  API --> DB[(MySQL configurado)]
-  API --> FS[Archivos subidos en disco]
-  API --> SMTP[Servicio SMTP]
+  W[Web React + Vite] -->|HTTP; JWT en rutas protegidas| API
+  F[Flutter - rama mobile] -.->|API prevista; integración sin verificar| API
+  subgraph Backend["Un servicio FastAPI"]
+    API[Aplicación y routers] --> L[Controladores y validación]
+    L --> ORM[SQLAlchemy]
+  end
+  ORM --> DB[(MySQL configurado)]
+  L --> FS[Archivos en disco local]
+  L --> SMTP[Servicio de correo SMTP]
 ```
+
+**Evidencia:** `frontend/src/api.js` y `routes.jsx`; `backend/api_usuarios/app/main.py`, `config/database.py`, `utils/file_storage.py` y `utils/mail.py`; `README.md` de FOCCUS para Flutter. MySQL puede ser local o Aiven según configuración. La revisión de arquitectura no comprobó conexión, correo ni `/docs`. Para el estado posterior del catálogo, ver el [informe](../requisitos/informe-revision.md).
 
 ## Entidad-relación (simplificado)
 

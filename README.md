@@ -12,6 +12,8 @@ Repositorio de documentación del proyecto [FOCCUS](https://github.com/Cr4ckJu4n
 | [exposicion/](exposicion/README.md) | Guía y lista de comprobación para exponer |
 | `privado/` | Accesos e ids para demos. **No se sube a git** |
 
+Para T6: [cierre](exposicion/cierre-t6.md), [demo propuesta](exposicion/demo-t6.md), [API y commits](exposicion/api-y-commits-t6.md) y [deuda técnica](exposicion/deuda-tecnica-t6.md). La demo integral no se ha demostrado en esta revisión.
+
 ## Estado
 
 Hay 30 RF, 13 RNF y 29 HU. La revisión web del 20 de noviembre es parcial; móvil sigue sin validar. Consulta el [informe](requisitos/informe-revision.md) y la [sustentación T6](sustentacion%20t6/README.md) para conocer avances y límites.
