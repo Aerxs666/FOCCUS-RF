@@ -22,7 +22,7 @@ Lista original: [15 criterios T6](https://github.com/ergrato-dev/checklist-proye
 | 12 | README y documentación de API | ✅ | El usuario aprueba el criterio. El [README](https://github.com/Cr4ckJu4nF3/FOCCUS/tree/docs/t6-evidencia-20261121#pruebas-y-evidencia-t6) incluye pruebas y rutas; `/openapi.json` documentó 69 rutas en arranque simulado, no una instalación limpia completa. |
 | 13 | Historial de construcción y corrección | ✅ | Hay commits de tipo [`feat`](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/7ff51433c5d85f577053f33636fd6c6d1483c2ac) y [`fix`](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/2397a2b121bfe9367107a86a1d85ade52f5777c5). No se demuestra vínculo con issues. |
 | 14 | Linter y regresiones T5 | ➖ No se realiza | Decisión del equipo. No se afirma una exención oficial ni que el criterio esté aprobado. |
-| 15 | Comparación de backends y deuda | 🟡 Parcial | [Deuda priorizada y evolución comprobable](requisito-15.md); falta identificar los cuatro backends del programa para compararlos. |
+| 15 | Comparación de backends y deuda | ✅ Alcance acordado | [Evolución del único backend y deuda priorizada](requisito-15.md). El usuario adapta la comparación a uno; la aceptación de esa adaptación por el instructor está pendiente. |
 
 **Estados:** ✅ evidencia del entregable o confirmación del usuario, según se indique; 🟡 falta evidencia o aclaración para el criterio completo; ⏸ en proceso o pausado; ➖ el equipo decidió no realizarlo. No son calificaciones oficiales.
 

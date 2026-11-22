@@ -2,20 +2,23 @@
 
 La [lista T6](https://github.com/ergrato-dev/checklist-proyectos-adso/blob/main/listas-de-chequeo/listas-oferta-abierta/t6/6t-lista-de-chequeo-oa.md) pide «Reflexión comparativa de los 4 backends del programa; deuda técnica documentada y priorizada».
 
-**Estado: parcial.** Hay deuda priorizada abajo; no hay información suficiente para comparar los cuatro backends del programa. La prioridad es una propuesta para el equipo, no un compromiso de fecha o responsable.
+**Estado: ✅ alcance acordado con el usuario.** El usuario indica que siempre trabajaron con un solo backend y pide comparar su evolución. Se presenta esa adaptación, sin afirmar que el instructor haya aceptado cambiar el criterio original. La deuda está priorizada como propuesta, sin fechas ni responsables acordados.
 
-## Lo que sí sabemos
+## Comparación histórica: un backend
 
-En FOCCUS se identificó un servicio FastAPI, organizado en routers; [main.py](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/cc96590fcb5ce8e1c063110c0b3beb6ecbe89e25/backend/api_usuarios/app/main.py) muestra su composición. No se identificaron aquí los otros backends del programa. Estos hitos son **cambios del proyecto**, no cuatro backends:
+El usuario identifica [RACCORD Alpha](https://github.com/Aerxs666/RACCORD-ALPHA-.0.0.1) como antecedente. La comparación usa su estado publicado y el historial de FOCCUS; son etapas del proyecto, **no cuatro servicios**.
 
-| Hito | Evidencia |
-|---|---|
-| Conexión del backend a MySQL | [Commit de conexión](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/35c08f3). |
-| Corrección del acceso y correo 2FA | [Commit de autenticación](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/1e57fe6). |
-| Catálogo y gestión de escenas | [Commit de catálogo](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/60e43ad). |
-| Entorno local con Docker | [Commit de Docker](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/93d57e6). |
+| Aspecto | Antes | Hoy |
+|---|---|---|
+| Servidor | RACCORD Alpha usaba [Flask y rutas de autenticación](https://github.com/Aerxs666/RACCORD-ALPHA-.0.0.1/blob/826c92232a2562218e95ecf27551ddf17ce84fa3/backend/app.py). El [primer FOCCUS](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/368ace4304c0fc6daec1085dc5347268941b72bb/backend/api_usuarios/app/main.py) ya usaba FastAPI. | Un [servicio FastAPI](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/cc96590fcb5ce8e1c063110c0b3beb6ecbe89e25/backend/api_usuarios/app/main.py) reúne los routers. |
+| Datos | El antecedente incluía el conector de PostgreSQL en sus [dependencias](https://github.com/Aerxs666/RACCORD-ALPHA-.0.0.1/blob/826c92232a2562218e95ecf27551ddf17ce84fa3/backend/requirements.txt). El segundo commit de FOCCUS registra la [conexión a MySQL](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/35c08f3). | [SQLAlchemy y MySQL](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/cc96590fcb5ce8e1c063110c0b3beb6ecbe89e25/backend/api_usuarios/app/config/database.py) conectan el servicio con la base configurada. |
+| Acceso | Alpha incluía JWT y protegía el perfil; ver sus [rutas de autenticación](https://github.com/Aerxs666/RACCORD-ALPHA-.0.0.1/blob/826c92232a2562218e95ecf27551ddf17ce84fa3/backend/routes/auth.py). En el [primer FOCCUS](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/368ace4304c0fc6daec1085dc5347268941b72bb/backend/api_usuarios/app/routes/user_routes.py), la ruta de proyectos por usuario no declaraba una dependencia JWT. | La [ruta actual](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/cc96590fcb5ce8e1c063110c0b3beb6ecbe89e25/backend/api_usuarios/app/routes/user_routes.py) exige usuario autenticado y verifica su identidad. El [recorrido](backend-y-recorrido.md#recorrido-de-acceso-y-consulta-de-proyectos) explica 2FA y JWT. |
+| Funcionalidad | El primer FOCCUS reunía rutas de usuarios, clientes, proyectos, roles y contacto. | Se añadieron guion, escenas, galería, rodaje y otros routers; el [catálogo](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/60e43ad) es un cambio posterior. |
+| Entorno | En la versión inicial de FOCCUS revisada no se encontró el montaje Docker actual. | El [commit Docker](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/93d57e6) incorporó un entorno local para web, API y MySQL. |
 
-El usuario indica que Docker funciona. La [guía Docker](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/cc96590fcb5ce8e1c063110c0b3beb6ecbe89e25/docs/DOCKER_LOCAL.md) registra pruebas anteriores de catálogo con MySQL local y datos ficticios. El entorno no configura SMTP ni crea automáticamente el catálogo en un volumen nuevo. Docker no demuestra por sí solo la comparación pedida ni una demo integral; no se ejecutaron pruebas nuevas en esta revisión.
+**Reflexión:** la evolución pasó de un backend centrado en autenticación a uno con más funciones de producción y controles de acceso. El aumento de alcance también exige más pruebas de integración y coordinación entre web, móvil y base de datos. Estos enlaces describen código y cambios; no prueban por sí solos todo el funcionamiento.
+
+El usuario indica que Docker funciona. La [guía Docker](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/cc96590fcb5ce8e1c063110c0b3beb6ecbe89e25/docs/DOCKER_LOCAL.md#aplicación-al-volumen-compose-de-esta-instalación-22-11-2026) registra pruebas anteriores del catálogo con datos ficticios y MySQL local: HTTP 200 al guardar y listar, 403 sin permiso y 401 sin JWT. El entorno no configura SMTP ni crea automáticamente el catálogo en un volumen nuevo. Docker no demuestra por sí solo la comparación pedida ni una demo integral; no se ejecutaron pruebas nuevas en esta revisión.
 
 ## Deuda técnica priorizada
 
@@ -29,8 +32,6 @@ El usuario indica que Docker funciona. La [guía Docker](https://github.com/Cr4c
 
 Se priorizan primero las brechas que impiden demostrar o integrar el producto; después, la reproducibilidad y la conservación de archivos.
 
-## Información necesaria para completar la comparación
+## Validación pendiente
 
-**Pregunta al equipo:** ¿cuáles son los cuatro backends del programa y cuál corresponde a FOCCUS? Compartan para cada uno el nombre, repositorio o entrega, tecnología y responsabilidad principal. Con eso se puede comparar propósito, tecnología, datos, seguridad y pruebas.
-
-Si no existen cuatro implementaciones distintas, consultar al instructor si acepta comparar **cuatro etapas comprobables del mismo backend** o sus responsabilidades. Son alternativas de presentación, no equivalencias ya aprobadas ni evidencia de cuatro backends.
+Confirmar con el instructor si acepta comparar la evolución de un solo backend frente al texto original de cuatro. La aprobación del usuario no equivale a aprobación del jurado.
