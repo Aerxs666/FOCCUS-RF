@@ -1,11 +1,11 @@
 # Sustentación T6 — FOCCUS
 
-Guía para preparar la exposición, no una calificación ni una aprobación. La decisión corresponde al equipo y al instructor o jurado.
+Guía para preparar la exposición, no una calificación ni una aprobación del jurado. La decisión corresponde al instructor o jurado.
 
 ## Navegación
 
 - [Lista de los 15 puntos](#lista-de-los-15-puntos)
-- [Evidencias y alcance](#evidencias-y-alcance)
+- [Evidencia por requisito](#evidencia-por-requisito)
 - [Arquitectura y backend](#arquitectura-y-backend)
 - [Recorrido de la demo](#recorrido-de-la-demo)
 - [Pendientes y deuda priorizada](#pendientes-y-deuda-priorizada)
@@ -13,39 +13,119 @@ Guía para preparar la exposición, no una calificación ni una aprobación. La 
 
 ## Lista de los 15 puntos
 
-Los responsables se indican por asignación conocida: **compañero** para los puntos 2, 6, 7 y 14; **equipo** para los demás, sin adjudicar personas ni compromisos nuevos. «Avance» no significa que el criterio esté aprobado.
+✅ **Cumplido:** se encontró evidencia de todo el criterio. 🟡 **Parcial:** hay evidencia, pero no de todos sus componentes. — **Pendiente:** no se encontró evidencia suficiente. La bonificación IoT es opcional; «pendiente» no afirma que deba presentarse. Estos estados no sustituyen la evaluación del jurado.
 
-| # | Necesario según la lista | Responsable | Situación y evidencia | Falta |
-|---|---|---|---|---|
-| 1 | Cierre honesto de T6 y lo que pasaría a T7. | Equipo | Esta guía separa avances y pendientes. | Acordar qué se cierra y qué, si corresponde, se lleva a T7; no hay decisión documentada aquí. |
-| 2 | Al menos dos sprints con retrospectivas que reflexionen sobre pruebas. | Compañero | Asignado; aquí no se ha verificado la evidencia. | Reunir y presentar las retrospectivas reales. |
-| 3 | Cuarto backend funcional y responsabilidad diferenciada frente a los anteriores. | Equipo | Se observa un servicio FastAPI con varios módulos. El usuario explica que el proyecto usa un solo backend. | Consultar la interpretación al instructor, aportar los antecedentes reales y demostrar el arranque de lo que se exija; no se acreditan cuatro servicios. |
-| 4 | Validación de entrada, JWT funcional e instalación desde cero con ejemplo de configuración. | Equipo | Las pruebas locales registradas ejercitan validación y JWT de forma aislada. | Verificar instalación limpia y funcionamiento en el entorno acordado; no publicar configuración sensible. |
-| 5 | Arquitectura actualizada y demo integral del sistema. | Equipo | Hay un diagrama orientativo y un recorrido propuesto abajo. **Demo sin ejecutar.** | Ejecutar el flujo completo y registrar el resultado; comprobar móvil si forma parte de la exposición. |
-| 6 | Bonificación IoT: prototipo, recepción de datos y protocolo. | Compañero | Asignado; es una bonificación, no un requisito obligatorio según la introducción de la lista. | Si se presenta, mostrar prototipo, comunicación y datos reales de prueba; no afirmar que existe sin evidencia. |
-| 7 | Plan de pruebas: alcance, niveles y ambiente separado del desarrollo. | Compañero | Asignado; no se ha verificado un plan completo en esta revisión. | Preparar o aportar el plan y el ambiente separado. |
-| 8 | Al menos 20 casos positivos y negativos, con datos, pasos y resultados esperados y obtenidos. | Equipo | El README local del producto registra **27 casos** aislados ejecutados; su matriz y pruebas no están publicadas en el commit base observado. | Publicar la evidencia autorizada y revisar con el responsable del plan si satisface el alcance exigido; los casos no prueban todo el sistema. |
-| 9 | Pruebas automatizadas con al menos 50 % de cobertura de un módulo crítico y colección Postman con tests. | Equipo | En ejecución local se registró **93 % de sentencias de `auth.py`** y **7 solicitudes / 7 aserciones** exitosas contra API parcial simulada. | Hacer disponible la evidencia, justificar el módulo y acordar si el alcance satisface el criterio; completar lo que requiera la API real. |
-| 10 | Reporte de ejecución y defectos registrados con severidad y estado. | Equipo | El README local describe entorno, versión y resultados parciales. | Consolidar reporte y registrar defectos reales en el sistema acordado, con severidad y estado; no se demuestra ese registro aquí. |
-| 11 | Dos ciclos de detectar → corregir → verificar, con caso, commit y reejecución. | Equipo | La corrección del servidor de prueba Postman y su reejecución **no** constituyen un ciclo demostrado de defecto de producción con commit. | Demostrar dos ciclos reales completos, sin inventar defectos ni historial. |
-| 12 | README con pruebas y documentación de la API del cuarto backend. | Equipo | Existe una sección de pruebas en el README **local** del producto; `/docs` y `/openapi.json` respondieron para la aplicación parcial de prueba, no para el servicio completo. | Publicar evidencia autorizada, documentar la API exigida y verificar instalación limpia y documentación del servicio completo. |
-| 13 | Commits que distingan construcción y corrección, idealmente asociados a incidencias. | Equipo | El historial del producto contiene ejemplos de mensajes de construcción y de corrección. | Relacionar defectos reales, sus commits y verificaciones cuando existan; un prefijo por sí solo no prueba un ciclo. |
-| 14 | Linter sin errores críticos y ausencia de regresiones respecto a T5. | Compañero | Una ejecución local de ESLint registró **14 errores**; no se comprobó su criticidad ni ausencia de regresiones. | Revisar y resolver los hallazgos aplicables y comprobar regresiones frente a T5. |
-| 15 | Reflexión comparativa de los cuatro backends y deuda técnica priorizada. | Equipo | Hay reflexión sobre el servicio observado y una lista de deuda abajo. | Aclarar con el instructor qué se debe comparar y aportar antecedentes reales; no inventar cuatro implementaciones. |
+| ID | Requisito de la lista T6 | Estado | Falta |
+|---|---|---|---|
+| [T6-01](#t6-01--cierre) | Cierre honesto de T6 y lo que pasaría a T7. | 🟡 Parcial | Acordar y documentar qué termina y qué pasa a T7. |
+| [T6-02](#t6-02--retrospectivas) | Al menos dos sprints con retrospectivas sobre pruebas. | — Pendiente | Aportar las dos retrospectivas reales. |
+| [T6-03](#t6-03--cuarto-backend) | Cuarto backend funcional con responsabilidad diferenciada. | 🟡 Parcial | Aclarar el criterio con el instructor, aportar antecedentes y demostrar lo exigido. |
+| [T6-04](#t6-04--validación-jwt-e-instalación) | Validación de entrada, JWT funcional e instalación desde cero con ejemplo de configuración. | 🟡 Parcial | Verificar instalación limpia y funcionamiento integral. |
+| [T6-05](#t6-05--arquitectura-y-demo) | Arquitectura actualizada y demo integral. | 🟡 Parcial | Comprobar el diagrama y ejecutar y registrar la demo completa. |
+| [T6-06](#t6-06--bonificación-iot) | Bonificación IoT: prototipo, recepción de datos y protocolo. | — Pendiente | Si se presenta, demostrar prototipo, comunicación y recepción. |
+| [T6-07](#t6-07--plan-de-pruebas) | Plan de pruebas con alcance, niveles y ambiente separado de desarrollo. | — Pendiente | Aportar el plan completo y el ambiente separado. |
+| [T6-08](#t6-08--matriz-de-casos) | Al menos 20 casos positivos y negativos con datos, pasos y resultados esperados y obtenidos. | 🟡 Parcial | Hacer disponible la matriz autorizada y confirmar que su alcance y resultados satisfacen la lista. |
+| [T6-09](#t6-09--automatización-y-postman) | Pruebas unitarias con al menos 50 % de cobertura de un módulo crítico y colección Postman con tests. | 🟡 Parcial | Hacer disponible la evidencia y confirmar si las pruebas aisladas y la API parcial satisfacen el alcance exigido. |
+| [T6-10](#t6-10--reporte-y-defectos) | Reporte de ejecución y defectos registrados con severidad y estado. | 🟡 Parcial | Consolidar el reporte y documentar defectos reales en el sistema de seguimiento. |
+| [T6-11](#t6-11--ciclos-de-corrección) | Dos ciclos detectar → corregir → verificar con caso, commit y reejecución. | — Pendiente | Demostrar dos ciclos completos y reales. |
+| [T6-12](#t6-12--readme-y-api) | README con pruebas y API del cuarto backend documentada. | 🟡 Parcial | Publicar la evidencia autorizada, aclarar el backend exigido y verificar la documentación de la API completa. |
+| [T6-13](#t6-13--historial-de-commits) | Commits que distingan construcción y corrección, idealmente asociados a incidencias. | ✅ Cumplido | La asociación con incidencias es deseable, no obligatoria; no se demuestra aquí. |
+| [T6-14](#t6-14--lint-y-regresiones) | Linter sin errores críticos y sin regresiones respecto a T5. | 🟡 Parcial | Revisar los errores y verificar regresiones frente a T5. |
+| [T6-15](#t6-15--comparación-y-deuda) | Reflexión comparativa de cuatro backends y deuda técnica priorizada. | 🟡 Parcial | Aclarar la comparación con el instructor y aportar antecedentes reales. |
 
-## Evidencias y alcance
+## Evidencia por requisito
 
-Resultados **registrados en el árbol local de FOCCUS**, en Windows, el 21-11-2026, sobre la base `9126d8f` con cambios locales sin commit. No se repitieron para preparar esta guía y no demuestran el estado de producción ni el de una instalación limpia.
+Las ejecuciones citadas se **registraron**, no se repitieron en esta revisión: Windows, 21-11-2026, base local de FOCCUS `9126d8f` con cambios sin commit. No demuestran producción ni instalación limpia. Los archivos locales no publicados se identifican por su ruta, sin enlaces que aparenten estar disponibles en GitHub. Un campo de evidencia vacío indica que no se encontró evidencia para ese punto.
 
-| Evidencia local registrada | Resultado | Límite |
-|---|---|---|
-| Seguridad y permisos backend | 36 pruebas aprobadas: 27 casos nuevos y 9 pruebas existentes. | Son pruebas aisladas; usan simulaciones y SQLite en memoria, no prueban MySQL ni correo reales. |
-| Cobertura | 108 de 116 sentencias de `auth.py`: **93 %**. | Solo sentencias de ese archivo; no ramas ni todo el backend. |
-| Postman/Newman | **7 solicitudes y 7 aserciones aprobadas**. | Aplicación parcial con cuatro rutas de usuario y BD simulada; no prueba toda la API, login exitoso ni infraestructura real. |
-| Frontend | 37 pruebas aprobadas y build finalizado. | Sin prueba en navegador ni verificación móvil. El build avisó de paquetes grandes. |
-| Lint | 14 errores en la ejecución registrada. | No se demuestra ausencia de errores críticos o regresiones T5. |
+### T6-01 — Cierre
 
-La matriz de los 27 casos, su código de prueba, la colección y el detalle de la ejecución están en archivos **locales sin commit**. No están incluidos en esta publicación documental. Al hacerlos disponibles, revisar datos y configuración antes de cualquier publicación.
+**Evidencia:** esta guía distingue avances y [deuda priorizada](#pendientes-y-deuda-priorizada).
+
+**Falta:** una decisión documentada sobre lo terminado en T6 y lo que pasaría a T7.
+
+### T6-02 — Retrospectivas
+
+**Evidencia:**
+
+**Falta:** dos retrospectivas de sprints con reflexión explícita sobre pruebas.
+
+### T6-03 — Cuarto backend
+
+**Evidencia:** en el código local `backend/api_usuarios/app/main.py` se observa una aplicación FastAPI con routers para distintos módulos. Según la explicación del usuario, FOCCUS usa un solo backend.
+
+**Falta:** confirmar con el instructor qué significa «cuarto backend», aportar antecedentes reales y demostrar el arranque y la responsabilidad exigidos. Los routers no demuestran cuatro servicios independientes.
+
+### T6-04 — Validación, JWT e instalación
+
+**Evidencia:** `backend/api_usuarios/app/utils/auth.py` implementa creación y verificación de JWT. El archivo local no publicado `backend/api_usuarios/tests/test_t6_seguridad_aislada.py` contiene pruebas de JWT y validación; el README local registra su ejecución aislada. Existe un archivo de ejemplo de configuración versionado.
+
+**Falta:** demostrar la instalación desde cero y el funcionamiento integral en el entorno acordado. Las pruebas aisladas no verifican servicios reales.
+
+### T6-05 — Arquitectura y demo
+
+**Evidencia:** abajo hay un [diagrama orientativo](#arquitectura-y-backend) y un [recorrido propuesto](#recorrido-de-la-demo).
+
+**Falta:** validar el diagrama contra el sistema integrado y ejecutar y registrar la demo completa; comprobar móvil si se incluye. El recorrido no se ha ejecutado.
+
+### T6-06 — Bonificación IoT
+
+**Evidencia:**
+
+**Falta:** si se presenta esta bonificación, demostrar un prototipo funcional, que los datos llegan al sistema y explicar el protocolo.
+
+### T6-07 — Plan de pruebas
+
+**Evidencia:**
+
+**Falta:** plan con alcance, niveles y ambiente de prueba separado del desarrollo.
+
+### T6-08 — Matriz de casos
+
+**Evidencia:** el README local no publicado de FOCCUS, sección «Pruebas y evidencia T6», registra 27 casos positivos y negativos de JWT, roles y validación, con datos ficticios, resultados esperados y estado obtenido. Cada paso remite al método `test_NN` correspondiente en `backend/api_usuarios/tests/test_t6_seguridad_aislada.py`, también local y sin commit.
+
+**Falta:** hacer disponible la matriz autorizada y confirmar que el alcance aislado y la forma de registrar los resultados cumplen lo exigido. No demuestra pruebas de todo el sistema.
+
+### T6-09 — Automatización y Postman
+
+**Evidencia:** el README local registra 36 pruebas backend aprobadas, incluidas 27 nuevas, y cobertura de **108 de 116 sentencias (93 %) de `auth.py`**, elegido por sus controles de JWT, 2FA, roles y recursos. También registra **7 solicitudes y 7 aserciones** aprobadas con Newman. La colección `backend/api_usuarios/tests/FOCCUS_T6.postman_collection.json` y la aplicación `tests/postman_app_aislada.py` están solo en local, sin commit.
+
+**Falta:** poner la evidencia autorizada a disposición y confirmar su alcance. La cobertura es de sentencias de un archivo, no de ramas ni del backend completo; Postman se ejecutó contra cuatro rutas de usuario con BD simulada, sin login exitoso ni infraestructura real.
+
+### T6-10 — Reporte y defectos
+
+**Evidencia:** el README local de FOCCUS registra fecha, entorno, versión base y resultados de pruebas parciales. También registra 37 pruebas frontend aprobadas y un build terminado, sin prueba en navegador ni verificación móvil.
+
+**Falta:** consolidar el reporte y aportar registros de defectos reales en un sistema de seguimiento con severidad y estado.
+
+### T6-11 — Ciclos de corrección
+
+**Evidencia:**
+
+**Falta:** dos defectos reales con detección, caso, commit de corrección y reejecución verificable. La corrección del servidor de prueba Postman no demuestra por sí sola un ciclo completo de defecto del producto.
+
+### T6-12 — README y API
+
+**Evidencia:** el README local no publicado de FOCCUS contiene una sección de pruebas. Según ese registro, `/docs` respondió y `/openapi.json` describió cuatro rutas de la aplicación parcial de prueba; no se verificó la documentación del servicio completo.
+
+**Falta:** publicar la evidencia autorizada y documentar y verificar la API exigida tras aclarar la interpretación del cuarto backend.
+
+### T6-13 — Historial de commits
+
+**Evidencia:** el historial público distingue construcción en [`7ff5143` (`feat(web)`)](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/7ff51433c5d85f577053f33636fd6c6d1483c2ac) y corrección en [`2397a2b` (`fix(web)`)](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/2397a2b121bfe9367107a86a1d85ade52f5777c5). La lista considera deseable, no obligatoria, la referencia a incidencias.
+
+**Límite:** los mensajes distinguen la intención de los cambios; no prueban por sí solos un ciclo de defecto y reejecución como el exigido en T6-11.
+
+### T6-14 — Lint y regresiones
+
+**Evidencia:** el README local registra una ejecución de ESLint con **14 errores**.
+
+**Falta:** revisar su criticidad y resolver los hallazgos aplicables; verificar que no haya regresiones respecto a T5.
+
+### T6-15 — Comparación y deuda
+
+**Evidencia:** la sección [Arquitectura y backend](#arquitectura-y-backend) reflexiona sobre el servicio observado y la [deuda técnica](#pendientes-y-deuda-priorizada) está ordenada por prioridad.
+
+**Falta:** aclarar con el instructor qué debe compararse y aportar antecedentes reales de los cuatro backends del programa. No se inventa una comparación.
 
 ## Arquitectura y backend
 
@@ -86,7 +166,7 @@ Prioridades orientativas, sin fechas ni compromisos acordados:
 1. **Alta:** verificar instalación limpia, integración completa y demo; comprobar móvil y compatibilidad de login/2FA si se va a presentar.
 2. **Alta:** completar el reporte de defectos y demostrar los dos ciclos reales de corrección.
 3. **Alta:** catálogo de bloques bloqueado: migración sin aplicar; Docker está pausado. No realizar migraciones ni presentarlo como disponible.
-4. **Media:** revisar los 14 errores de lint y la ausencia de regresiones T5 con el compañero responsable.
+4. **Media:** revisar los 14 errores de lint y la ausencia de regresiones T5.
 5. **Media:** evaluar recuperación de archivos almacenados localmente y mejorar el manejo compartido de errores HTTP.
 
 El equipo y el instructor deben decidir qué queda para T7; esta lista no toma esa decisión.
