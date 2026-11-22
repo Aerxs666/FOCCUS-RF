@@ -9,17 +9,17 @@ Lista original: [15 criterios T6](https://github.com/ergrato-dev/checklist-proye
 | # | Criterio | Estado | Evidencia breve y qué falta |
 |---|---|---|---|
 | 01 | Cierre T6 y orientación T7 | ✅ | El equipo sitúa el cierre web en los cambios de guion, galería y panel; para T7 quedan móvil y los nuevos requisitos que se indiquen. Las pantallas de [guion](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/02ffb2de7c123b5b228aa2e2df9298faf4278eca/frontend/src/screen/Guion.jsx) y [proyecto](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/02ffb2de7c123b5b228aa2e2df9298faf4278eca/frontend/src/screen/ProjectDashboard.jsx) no prueban una demo completa. |
-| 02 | Retrospectivas | ⏸ En proceso | El usuario indica que se están realizando; falta comprobar dos retrospectivas con reflexión sobre las pruebas. |
-| 03 | Backend funcional y responsabilidades | ✅ | El usuario confirma que el backend arranca. [Cómo encenderlo y explicar sus responsabilidades](backend-y-recorrido.md). La lista original también pide diferenciarlas frente a los backends anteriores; su interpretación corresponde al instructor. |
+| 02 | Retrospectivas | ⏸ En proceso | En ClickUp se reconstruyeron períodos y tareas a partir de commits. Los sprints nativos siguen sin iniciar y sus fechas nativas no son las históricas. La reconstrucción no demuestra ceremonias reales; faltan dos retrospectivas comprobables con reflexión sobre las pruebas. |
+| 03 | Backend funcional y responsabilidades | ✅ | Se confirmó el arranque del backend. [Cómo encenderlo y explicar sus responsabilidades](backend-y-recorrido.md). La lista original también pide diferenciarlas frente a los backends anteriores; su interpretación corresponde al instructor. |
 | 04 | JWT, validación e instalación | ✅ | El usuario confirma el criterio; hay [pruebas aisladas](#comandos-para-repetir-las-pruebas) de JWT y validación. El agente no probó la instalación limpia ni el login real; falta evidencia reproducible. |
-| 05 | Arquitectura y recorrido integral | ✅ | El usuario aprueba la arquitectura y el [recorrido explicado](backend-y-recorrido.md#recorrido-de-acceso-y-consulta-de-proyectos); la demo completa con API y persistencia no se ha demostrado. |
+| 05 | Arquitectura y recorrido integral | ✅ | Se aprobó la arquitectura y el [recorrido explicado](backend-y-recorrido.md#recorrido-de-acceso-y-consulta-de-proyectos); la demo completa con API y persistencia no se ha demostrado. |
 | 06 | Bonificación IoT | ➖ No se realiza | Decisión del equipo; no se presenta un prototipo. |
 | 07 | Plan de pruebas | ✅ | [Plan aprobado por el usuario](plan-pruebas.md); aprobar el plan no significa que se hayan ejecutado todos los casos. |
 | 08 | Casos de prueba | ✅ | 27 casos de seguridad y 9 de API registrados en la [evidencia pública](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/docs/t6-evidencia-20261121/docs/agentes/T6_EVIDENCIA.md#matriz-complementaria-de-api-integrada). |
 | 09 | Automatización y cobertura | ✅ | 93 % de sentencias de `auth.py`; Newman: 7/7 aserciones en una API parcial. No representa cobertura integral del producto. |
 | 10 | Reporte y seguimiento de defectos | 🟡 Parcial | Hay [reporte](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/docs/t6-evidencia-20261121/docs/agentes/T6_EVIDENCIA.md) y [registro en archivo](seguimiento-defectos.md), con severidad y estado. Falta confirmar si el instructor acepta el archivo como sistema de seguimiento; no se crearon GitHub Issues. |
 | 11 | Ciclos de corrección | ✅ | Dos ciclos publicados: [A](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/fix/t6-ciclo-a/docs/agentes/T6_CICLO_IE.md) y [B](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/fix/t6-ciclo-b/docs/agentes/T6_CICLO_LUGARES.md). Ramas separadas, aún no integradas en `main`. |
-| 12 | README y documentación de API | ✅ | El usuario aprueba el criterio. El [README](https://github.com/Cr4ckJu4nF3/FOCCUS/tree/docs/t6-evidencia-20261121#pruebas-y-evidencia-t6) incluye pruebas y rutas; `/openapi.json` documentó 69 rutas en arranque simulado, no una instalación limpia completa. |
+| 12 | README y documentación de API | ✅ | Se aprobó el alcance presentado. El [README](https://github.com/Cr4ckJu4nF3/FOCCUS/tree/docs/t6-evidencia-20261121#pruebas-y-evidencia-t6) incluye pruebas y rutas; `/openapi.json` documentó 69 rutas en arranque simulado, no una instalación limpia completa. |
 | 13 | Historial de construcción y corrección | ✅ | Hay commits de tipo [`feat`](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/7ff51433c5d85f577053f33636fd6c6d1483c2ac) y [`fix`](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/2397a2b121bfe9367107a86a1d85ade52f5777c5). No se demuestra vínculo con issues. |
 | 14 | Linter y regresiones T5 | ➖ No se realiza | Decisión del equipo. No se afirma una exención oficial ni que el criterio esté aprobado. |
 | 15 | Comparación de backends y deuda | ✅ Alcance acordado | [Evolución del único backend y deuda priorizada](requisito-15.md). El usuario adapta la comparación a uno; la aceptación de esa adaptación por el instructor está pendiente. |
@@ -30,7 +30,7 @@ Lista original: [15 criterios T6](https://github.com/ergrato-dev/checklist-proye
 
 - **Base de datos:** el registro local de `foccus-bd` indica que se aplicó `catalogo_bloques` en Aiven y se verificó su estructura por metadatos. El tercer respaldo previo se restauró y verificó; los otros dos no completaron esa comprobación. Este registro aún no está publicado.
 - **Guion:** se informó una prueba de API real que guardó, recuperó y reinsertó cuatro tipos de bloques y editó una ficha. «Quitar de versión» se probó en borrador y se canceló. No demuestra el resto de los flujos.
-- El usuario confirma uso de Aiven y escritura manual en el guion, sin resultados detallados por opción. La revisión visual sigue en curso con web; no se adelanta su resultado.
+- Se confirmó el uso de Aiven y la escritura manual en el guion, sin resultados detallados por opción. La revisión visual sigue en curso; no se adelanta su resultado.
 
 ## Comandos para repetir las pruebas
 

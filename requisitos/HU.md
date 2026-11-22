@@ -55,7 +55,7 @@ Los símbolos describen implementación, no aprobación integral de pruebas. La 
 
 Fuera de alcance en esta pasada; el estado siguiente es histórico y no está validado, tampoco frente al nuevo contrato 2FA.
 
-- **HU-29** — Como miembro del equipo, quiero consultar y editar el proyecto desde el celular, para trabajar en el set. · RF-02, 10, 14, 17, 19, 22, 24, 28–30 · app Flutter (rama `mobile`) · 🟡 (falta PDF, bloques `gb-*`)
+- **HU-29** — Como integrante del equipo, quiero consultar el proyecto desde el celular y editarlo si mi rol lo permite, para trabajar en el set. · RF-02, 10, 14, 17, 19, 22, 24, 28–30 · app Flutter (rama `mobile`) · 🟡 estado histórico sin validar; falta contrastar permisos, PDF y bloques `gb-*`.
 
 ## Otros
 

@@ -2,6 +2,8 @@
 
 Fecha: 2026-11-20.
 
+Actualización documental del 2026-11-22: el [commit `60e43ad` de FOCCUS](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/60e43ad) incorpora catálogo de bloques y gestión de escenas. El [registro web](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/cc96590fcb5ce8e1c063110c0b3beb6ecbe89e25/docs/agentes/CAMBIOS_WEB.md) informa que el catálogo se aplicó en Aiven; el registro local de `foccus-bd` añade la verificación de su estructura. No se consultó la BD en esta revisión. La [guía Docker](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/cc96590fcb5ce8e1c063110c0b3beb6ecbe89e25/docs/DOCKER_LOCAL.md) registra pruebas aisladas y aclara que un volumen nuevo no incluye la migración automáticamente. No se comprobó la versión instalada ni una demo integral; no se modifican los estados históricos de RF/HU. Móvil, incluido 2FA, sigue sin validar.
+
 ## Alcance y fuentes
 
 Esta revisión incorpora la evidencia web de `docs/agentes/GUIA_PRUEBAS_RF.md` del repositorio FOCCUS y las correcciones del commit `2397a2b`. Los símbolos de implementación de RF y HU no significan aprobación integral. **Móvil quedó fuera de alcance**: sus estados anteriores y el impacto del contrato 2FA no se validaron.

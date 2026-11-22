@@ -1,6 +1,6 @@
 # Backend y recorrido end-to-end
 
-Guía para explicar FOCCUS en la sustentación. El usuario confirma que el backend arranca; este documento describe el código, no una nueva prueba integral.
+Guía para explicar FOCCUS en la sustentación. Se confirmó que el backend arranca; este documento describe el código, no una nueva prueba integral.
 
 ## Requisito 3: encender y explicar el backend
 

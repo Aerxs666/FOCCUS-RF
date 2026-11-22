@@ -2,6 +2,8 @@
 
 Última revisión: 2026-11-20. La evidencia y los cambios de estado de esta pasada corresponden a web; móvil quedó fuera de alcance y no se validó, incluido el impacto del nuevo contrato 2FA.
 
+Actualización documental del 2026-11-22: el [commit `60e43ad` de FOCCUS](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/60e43ad) incorpora catálogo de bloques y gestión de escenas. El [registro web](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/cc96590fcb5ce8e1c063110c0b3beb6ecbe89e25/docs/agentes/CAMBIOS_WEB.md) informa que el catálogo se aplicó en Aiven; el registro local de `foccus-bd` añade la verificación de su estructura. No se consultó la BD en esta revisión. La [guía Docker](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/cc96590fcb5ce8e1c063110c0b3beb6ecbe89e25/docs/DOCKER_LOCAL.md) registra pruebas aisladas y aclara que un volumen nuevo no incluye la migración automáticamente. Esto no demuestra una demo integral ni cambia los estados históricos de la tabla. Móvil sigue sin validar.
+
 La guía `FOCCUS/docs/agentes/GUIA_PRUEBAS_RF.md` registra 80 pruebas aisladas de backend y 16 de frontend, compilación web correcta y análisis sin errores en los archivos web modificados. También registra comprobaciones puntuales con aplicación, API, BD y correo reales. El estado ✅ indica implementación, **no aprobación integral**; los límites se detallan en el [informe](informe-revision.md). Flutter no se probó.
 
 | RF | HU | Evidencia principal | Estado |

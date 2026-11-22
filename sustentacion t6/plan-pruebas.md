@@ -4,7 +4,7 @@
 
 ## Objetivo y alcance
 
-Comprobar el comportamiento y los permisos de acceso, proyectos, guiones y escenas, galería y continuidad, y rodaje. La aplicación móvil está **pendiente** y se terminará y probará para T7. Priorizar recorridos representativos, sin afirmar cobertura total ni ausencia de defectos.
+Comprobar el comportamiento y los permisos de acceso, proyectos, guiones y escenas, galería y continuidad, y rodaje. La aplicación móvil está **pendiente**; su adaptación y prueba se orientan a T7. Priorizar recorridos representativos, sin afirmar cobertura total ni ausencia de defectos.
 
 ## Niveles y tipos
 

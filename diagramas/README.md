@@ -25,10 +25,10 @@ flowchart LR
 ```mermaid
 flowchart LR
   W[Web React + Vite] -->|HTTP JSON + JWT| API[FastAPI]
-  F[App Flutter] -->|HTTP JSON + JWT| API
-  API --> DB[(MySQL Aiven)]
+  F[App Flutter] -.->|Integración con API sin verificar| API
+  API --> DB[(MySQL configurado)]
   API --> FS[Archivos subidos en disco]
-  API --> SMTP[Gmail SMTP]
+  API --> SMTP[Servicio SMTP]
 ```
 
 ## Entidad-relación (simplificado)
@@ -73,7 +73,7 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
   actor AD as Administrador
-  participant W as Web/Móvil
+  participant W as Web
   participant A as API
   participant D as BD
   AD->>W: escribe ESC-003

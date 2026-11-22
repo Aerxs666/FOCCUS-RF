@@ -19,12 +19,12 @@ En un rodaje, la misma escena se graba en días distintos. Si el vestuario, los 
 | Desglose | Requerimientos de cada escena para planear el rodaje |
 | Rodaje | Cronograma por jornadas con escenas y procesos |
 | Códigos y buscador | Código único por elemento y búsqueda (solo admin) |
-| App móvil | Consulta y edición desde el celular (Flutter) |
+| App móvil | Cliente Flutter; su integración y funcionamiento actuales están pendientes de validar |
 
 ## Roles
 
 - **Administrador** (`id_rol` 1001 en el proyecto): crea, edita, borra, invita, ve códigos.
-- **Miembro**: consulta y aporta según permisos.
+- **Usuario**: consulta los datos del proyecto; las acciones personales de perfil y cuenta son independientes.
 - **Visitante**: solo landing, registro y contacto.
 
 ## Códigos únicos
@@ -41,7 +41,7 @@ Formato `TIPO-001`, consecutivo por proyecto y tipo, generado por el backend, in
 
 ## Tecnología
 
-Backend FastAPI + SQLAlchemy + MySQL (Aiven); frontend React 19 + Vite; móvil Flutter. Código en https://github.com/Cr4ckJu4nF3/FOCCUS.
+Backend FastAPI + SQLAlchemy + MySQL; frontend React 19 + Vite; móvil Flutter. La base puede configurarse en Aiven o en un entorno local. Código en https://github.com/Cr4ckJu4nF3/FOCCUS.
 
 ## Glosario
 
