@@ -11,7 +11,7 @@ Lista original: [15 criterios T6](https://github.com/ergrato-dev/checklist-proye
 | 01 | Cierre T6 y orientación T7 | ✅ | El equipo sitúa el cierre web en los cambios de guion, galería y panel; para T7 quedan móvil y los nuevos requisitos que se indiquen. Las pantallas de [guion](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/02ffb2de7c123b5b228aa2e2df9298faf4278eca/frontend/src/screen/Guion.jsx) y [proyecto](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/02ffb2de7c123b5b228aa2e2df9298faf4278eca/frontend/src/screen/ProjectDashboard.jsx) no prueban una demo completa. |
 | 02 | Retrospectivas | ⏸ En proceso | El usuario indica que se están realizando; falta comprobar dos retrospectivas con reflexión sobre las pruebas. |
 | 03 | Backend funcional y responsabilidades | 🟡 Parcial | Hay **un servicio FastAPI** con routers de usuarios, proyectos, guion, escenas, galería y rodaje. El [arranque probado](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/docs/t6-evidencia-20261121/docs/agentes/T6_EVIDENCIA.md#ejecución-y-límites) fue simulado; falta demostrar arranque real sin errores y aclarar con el instructor la comparación con backends anteriores. |
-| 04 | JWT, validación e instalación | 🟡 Parcial | El usuario confirma el criterio; hay [pruebas aisladas](#comandos-para-repetir-las-pruebas) de JWT y validación. Falta evidencia reproducible de instalación completa desde cero y login real; la confirmación no sustituye esa evidencia. |
+| 04 | JWT, validación e instalación | ✅ | El usuario confirma el criterio; hay [pruebas aisladas](#comandos-para-repetir-las-pruebas) de JWT y validación. El agente no probó la instalación limpia ni el login real; falta evidencia reproducible. |
 | 05 | Arquitectura y recorrido integral | 🟡 Parcial | [Diagramas y rutas](#evidencia-requisito-5); la demo completa con API y persistencia no está probada. |
 | 06 | Bonificación IoT | ➖ No se realiza | Decisión del equipo; no se presenta un prototipo. |
 | 07 | Plan de pruebas | ✅ | [Plan aprobado por el usuario](plan-pruebas.md); aprobar el plan no significa que se hayan ejecutado todos los casos. |
@@ -24,7 +24,7 @@ Lista original: [15 criterios T6](https://github.com/ergrato-dev/checklist-proye
 | 14 | Linter y regresiones T5 | ➖ No se realiza | Decisión del equipo. No se afirma una exención oficial ni que el criterio esté aprobado. |
 | 15 | Comparación de backends y deuda | ⏸ Pausado | La comparación queda pendiente; la deuda técnica está anotada en la [evidencia T6](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/docs/t6-evidencia-20261121/docs/agentes/T6_EVIDENCIA.md). |
 
-**Estados:** ✅ evidencia del entregable; 🟡 falta evidencia o aclaración para el criterio completo; ⏸ en proceso o pausado; ➖ el equipo decidió no realizarlo. No son calificaciones oficiales.
+**Estados:** ✅ evidencia del entregable o confirmación del usuario, según se indique; 🟡 falta evidencia o aclaración para el criterio completo; ⏸ en proceso o pausado; ➖ el equipo decidió no realizarlo. No son calificaciones oficiales.
 
 ## Avances recientes y límites
 
