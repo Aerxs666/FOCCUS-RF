@@ -2,6 +2,8 @@
 
 Actualización documental: 2026-11-22. Esta guía prepara la exposición; no es una calificación ni demuestra una demo integral.
 
+Actualización del 2026-11-24: [mejoras de interfaz `9141a3f`](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/9141a3f) y [editor de guion `48a844c`](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/48a844c) publicadas en FOCCUS. La [demo propuesta](demo-t6.md) incorpora el nuevo flujo; no se ejecutó aquí. Según lo comunicado por el usuario, la última publicación reportó 55 pruebas frontend y compilación correctas, con 14 errores de lint preexistentes; no son resultados ejecutados en esta revisión. La versión instalada para exposición sigue sin comprobar.
+
 ## Alcance y versión
 
 - FOCCUS web reúne autenticación, proyectos, guion, escenas, galería, desglose y rodaje. Hay implementación y comprobaciones puntuales anteriores, no una aceptación integral: ver [matriz](../requisitos/matriz-trazabilidad.md) e [informe](../requisitos/informe-revision.md).

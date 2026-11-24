@@ -2,6 +2,12 @@
 
 Fecha: 2026-11-20.
 
+Actualización documental del 2026-11-24: los commits web [`9141a3f`](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/9141a3f) y [`48a844c`](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/48a844c) se contrastaron con el código, no mediante una demo o prueba de API. El usuario comunica que la última publicación reportó 55 pruebas frontend y compilación correctas, y 14 errores de lint preexistentes. No se ejecutaron ni verificaron esos resultados en esta revisión; se conservan las ejecuciones anteriores como evidencia histórica.
+
+En `Guion.jsx`, crear desde cero inicia con un nombre provisional; al guardar se solicitan nombre y descripción y se valida contenido. El menú **Escenas** reúne selección, creación, edición de ficha y retiro de la versión; el editor también permite dividir la escritura por escenas. La edición de una versión envía contenido para crear otra. Esto aporta evidencia de interfaz para RF-13, RF-14, RF-17 y RF-26, no una comprobación de persistencia o de todos los permisos.
+
+Los estilos incorporan superficies de vidrio, animaciones y ajustes de tema oscuro en vistas concretas; `Interacciones.css` contempla preferencia de movimiento reducido. No se verificó cobertura visual universal y la hoja de escritura del guion permanece blanca. Son mejoras de usabilidad, no nuevos RF obligatorios.
+
 Actualización documental del 2026-11-22: el [commit `60e43ad` de FOCCUS](https://github.com/Cr4ckJu4nF3/FOCCUS/commit/60e43ad) incorpora catálogo de bloques y gestión de escenas. El [registro web](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/cc96590fcb5ce8e1c063110c0b3beb6ecbe89e25/docs/agentes/CAMBIOS_WEB.md) informa que el catálogo se aplicó en Aiven; el registro local de `foccus-bd` añade la verificación de su estructura. No se consultó la BD en esta revisión. La [guía Docker](https://github.com/Cr4ckJu4nF3/FOCCUS/blob/cc96590fcb5ce8e1c063110c0b3beb6ecbe89e25/docs/DOCKER_LOCAL.md) registra pruebas aisladas y aclara que un volumen nuevo no incluye la migración automáticamente. No se comprobó la versión instalada ni una demo integral; no se modifican los estados históricos de RF/HU. Móvil, incluido 2FA, sigue sin validar.
 
 ## Alcance y fuentes

@@ -33,5 +33,5 @@ Esquema base de 10 a 15 minutos. Los datos de acceso están en `privado/` (no se
 
 - **¿Cómo se protege la información?** JWT, contraseñas con bcrypt, controles por rol y secretos fuera de git. La suite web incluye pruebas aisladas de pertenencia de recursos al proyecto; no equivale a una validación con BD real.
 - **¿Por qué códigos?** En audiovisual todo se identifica con un código para hallarlo rápido; solo el admin los ve.
-- **¿Qué falta?** Validar móvil y la demo integral, además de definir una estrategia para los archivos. Una ejecución anterior registró 14 errores de lint global; no se ha confirmado la cifra actual. Ver [deuda técnica](deuda-tecnica-t6.md) y [evidencia T6](../sustentacion%20t6/README.md).
+- **¿Qué falta?** Validar móvil y la demo integral, además de definir una estrategia para los archivos. El usuario comunica que la última publicación reportó 14 errores de lint preexistentes; no se ejecutó lint en esta revisión. Ver [deuda técnica](deuda-tecnica-t6.md) y [evidencia T6](../sustentacion%20t6/README.md).
 - **¿Cómo se respalda la BD?** Antes de cambios estructurales se debe crear un respaldo y verificar su restauración. Consulta el registro de BD para cada caso; no asumas que todos los respaldos están verificados.
